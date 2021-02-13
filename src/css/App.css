@@ -1,0 +1,120 @@
+.App {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+hr{
+  width: 400px;
+  border-top: 1px solid rgba(#ebaa93, 0.8);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-top: 40px;
+}
+
+.card-container.card {
+  max-width: 350px !important;
+  padding: 40px 40px;
+}
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.profile-img-card {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+
+  display: inline-block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#preview-image {
+  height: 300px;
+}
+.text-input{
+  background-color: #ECECEC;
+  outline: none;
+  border-radius: .1rem
+}
+.text-input::placeholder{
+  color: #EAA992;
+}
+
+.text-input:focus{
+  background-color: #ECECEC;
+  outline: none;
+  border-color: #DDDDDD;
+  box-shadow: none;
+}
+
+.fetch-btn{
+    color: #EAA992;
+    background-color: #ECECEC;
+    border-radius: 0.1rem;
+    display: block;
+    margin: 10px auto;
+    width: 40%;
+}
+.fetch-btn:hover{
+  color: #F15A24
+}
+
+.delete-btn{
+    color: #eb8181;
+    background-color: rgba(168, 41, 41, 0.2);
+    border-radius: 0.1rem;
+    display: block;
+    margin: 10px auto;
+
+}
+.delete-btn:hover{
+  color: #f12424
+}
+
+.orange-bold{
+  color: #F15A24;
+  font-weight: 600;
+}
+.wrapper{
+  position: relative;
+  width: 250px;
+  margin: 0 auto;
+}
+.dog_profile_img{
+  width: 100%;
+  border-radius: 20px;
+}
+.delete-icon{
+  position: absolute;
+  padding: 0 5px;
+  background:  rgba(0,0,0,0.5);
+  border: solid rgba(0,0,0,0.5) 2px;
+  border-radius: 30%;
+  top: 10px;
+  right: 10px;
+}
+.edit-icon{
+  position: absolute;
+  padding: 0 5px;
+  background:  rgba(0,0,0,0.5);
+  border: solid rgba(0,0,0,0.5) 2px;
+  border-radius: 30%;
+  top: 10px;
+  left: 10px;
+}
+.delete-icon:hover, .edit-icon:hover{
+  cursor: pointer
+}
