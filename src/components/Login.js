@@ -36,10 +36,9 @@ const Login = (props) => {
     form.current.validateAll()
     // validator stores errrors and we can check if error exists
     if(checkBtn.current.context._errors.length === 0){
-      login(data.email, data.password).then(()=>{
+      login(data.email, data.password).then((res)=>{
         setLoading(false)
-        props.history.push("/profile")
-        window.location.reload()
+        console.log(res.data)
       },
       (error)=>{
 

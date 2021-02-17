@@ -9,13 +9,11 @@ const Profile = (props) =>{
 
   const currentUser = getCurrentUser() // from the header info
   const [data,setData] = useState({})
-  const [dogs, setDogs] = useState([])
 
   useEffect(()=>{
     if(currentUser){
       getProfile().then(response=>{
         setData(response.data)
-        setDogs(response.data.dogs)
       })
     }
   },[])
@@ -35,26 +33,24 @@ const Profile = (props) =>{
      :  (
         <div className="container">
         <h3 className="text-center">
-        <strong>{currentUser.username}</strong>
+        <strong>{currentUser.name}</strong>
         </h3>
           <header className='jumbotron'>
-          <p><span className="orange-bold">City:</span> {data.location}</p>
           <p><span className="orange-bold">Email Address:</span>Email: {data.email}</p>
           <hr/>
-          <Link to={{pathname:"/profile/edit",state:{email:data.email,location:data.location}}} className="btn fetch-btn">Edit Profile</Link>
           <form onSubmit={deleteUser}>
             <button className="btn delete-btn">Delete Account</button>
           </form>
           </header>
 
-          <h2 className="orange-bold">Your Dogs:</h2>
-          {dogs?<div className="container">
-            {dogs.map(dog=>{
-              return (<Link  to={ { pathname:`/profile/dogs/${dog._id}`,state:{dog:dog} } } key={dog._id} >
+          <h2 className="orange-bold">Your Baked Goods:</h2>
+          {data.bread?<div className="container">
+            {data.bread.map(bg=>{
+              return (<Link  to={ { pathname:`/profile/bread/${bg._id}`,state:{bg:bg} } } key={bg._id} >
                 <div className="row align-items-center justify-content-start">
-                  <div className="col-3"><h3 className="orange-bold">{dog.name}</h3></div>
+                  <div className="col-3"><h3 className="orange-bold">{bg.name}</h3></div>
                   <div className="col-5">
-                    <img  className="profile-img-card" src={dog.picture_url} alt={dog.name}/>
+                    <img  className="profile-img-card" src={bg.imageurl} alt={bg.name}/>
                   </div>
 
               </div>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {setItem, getItem, removeItem} from '../utils/localStorage.utils'
-const API_URL = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEV_URL : process.env.REACT_APP_PRO_URL_AUTH;
+const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000/auth/' : process.env.REACT_APP_PRO_URL_AUTH;
 
 /*
 POST |	/api/signup |	signup new account
@@ -9,9 +9,9 @@ POST |	/api/signin |	login an account
 
 
 //function to register user
-export const register = (username, email, password, location) => {
+export const register = (name, email, password) => {
   return axios.post(API_URL+'signup', {
-    username,
+    name,
     email,
     password,
   })
@@ -19,8 +19,8 @@ export const register = (username, email, password, location) => {
 
 // login the user
 export const login = (email, password) => {
-  console.log(process.env.NODE_ENV)
-  return axios.post(API_URL+'signin', {
+  console.log(API_URL)
+  return axios.post(API_URL+'login', {
     email,
     password
   })

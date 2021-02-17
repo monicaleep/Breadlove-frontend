@@ -1,7 +1,7 @@
 import axios from 'axios'
 import authHeader from '../utils/authHeader.utils'
 
-const API_URL = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_DEV_URL : process.env.REACT_APP_PRO_URL;
+const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000/' : process.env.REACT_APP_PRO_URL;
 
 export const deleteUserDog = (dogid) => {
   return axios.delete(API_URL+'profile/dogs/'+dogid,{headers:authHeader()})

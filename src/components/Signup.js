@@ -55,7 +55,7 @@ const Signup = (props) =>{
   const form = useRef()
   const checkBtn = useRef()
 
-  const [data,setData] = useState({username:"",password:"",email:""})
+  const [data,setData] = useState({name:"",password:"",email:""})
   const [successful, setSuccessful] = useState(false)
   const [message, setMessage] = useState("")
 
@@ -140,18 +140,7 @@ const Signup = (props) =>{
             />
           </FormGroup>
 
-          <div className="form-group">
-            <div className="row">
-
-            <label htmlFor="location" className="col-md-4">Location: </label>
-            <Select  placeholder="Location" name='location' className="form-control text-input ml-md-3" value={data.location} onChange={handleChange}validations={[required]}>
-              <option value='San Francisco, CA'>San Francisco</option>
-              <option value='New York, NY'>New York</option>
-              <option value='Portland, OR'>Portland</option>
-              <option value='Houston, TX'>Houston</option>
-            </Select>
-            </div>
-          </div>
+          
 
           <BtnSpinner loading={successful} text="Sign Up"/>
 
