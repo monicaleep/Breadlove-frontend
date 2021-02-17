@@ -1,12 +1,12 @@
 import {Link} from 'react-router-dom'
 import {getCurrentUser} from '../services/auth.service'
-
+import {useEffect} from 'react'
 import logo from '../css/images/Fetch_Logo_7.png'
 import background from '../css/images/LandingPage_Background.jpg'
 
 
 const Home = () => {
-  
+
   const display = () => {
     return !getCurrentUser() ?
       <div className='card text-center mt-5' >

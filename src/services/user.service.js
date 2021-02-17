@@ -1,7 +1,7 @@
 import axios from 'axios'
 import authHeader from '../utils/authHeader.utils'
 
-const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000' : process.env.REACT_APP_PRO_URL;
+const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000/' : process.env.REACT_APP_PRO_URL;
 
 /*
 GET	 |   /profile	 |	retrieve user's profile
