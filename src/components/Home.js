@@ -1,8 +1,5 @@
 import {Link} from 'react-router-dom'
 import {getCurrentUser} from '../services/auth.service'
-import {useEffect} from 'react'
-import logo from '../css/images/Fetch_Logo_7.png'
-import background from '../css/images/LandingPage_Background.jpg'
 
 
 const Home = () => {
@@ -10,7 +7,7 @@ const Home = () => {
   const display = () => {
     return !getCurrentUser() ?
       <div className='card text-center mt-5' >
-        <h1 className='card-title'>Welcome to <img src={logo} height='50px' /></h1>
+        <h1 className='card-title'>Welcome to </h1>
         <h3 className='card-title'>Find Your Best Friend's New Best Friend</h3>
         <div className='row justify-content-between'>
         <Link to={'/login'}  className="col-md-4 btn fetch-btn">Log In</Link>

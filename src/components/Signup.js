@@ -11,7 +11,6 @@ import BtnSpinner from './common/BtnSpinner'
 import {resMessage} from '../utils/functions.utils'
 import { register, login } from '../services/auth.service'
 
-import logo from '../css/images/Fetch_Logo_7.png'
 
 const required = (value) => {
   if(!value){
@@ -95,11 +94,7 @@ const Signup = (props) =>{
   return (
     <div className="col-md-12">
       <div className="card card-container">
-        <img
-          src={logo}
-          alt="fetch-img"
-          className="mb-5"
-        />
+        
         <Form onSubmit={handleSignup} ref={form}>
           <FormGroup>
           <label className="sr-only" htmlFor="username">Username</label>
@@ -140,7 +135,7 @@ const Signup = (props) =>{
             />
           </FormGroup>
 
-          
+
 
           <BtnSpinner loading={successful} text="Sign Up"/>
 

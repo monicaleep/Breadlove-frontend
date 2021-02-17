@@ -8,7 +8,6 @@ import BtnSpinner from './common/BtnSpinner'
 // helper
 import { login } from '../services/auth.service'
 import {resMessage} from '../utils/functions.utils'
-import logo from '../css/images/Fetch_Logo_7.png'
 
 
 const required = (value) => {
@@ -60,11 +59,7 @@ const Login = (props) => {
   return (
   <div className="col-md-12">
     <div className="card card-container">
-      <img
-        src={logo}
-        alt="fetch-img"
-        className="mb-5"
-      />
+      
       <Form onSubmit={handleLogin} ref={form} className="mt-5">
         <FormGroup >
         <label className="sr-only" htmlFor="email">Email</label>
