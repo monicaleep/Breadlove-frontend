@@ -2,7 +2,6 @@ import React, {useState, useRef} from 'react';
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
-import Select from 'react-validation/build/select'
 import validator from 'validator';
 // Common components we made
 import FormGroup from './common/FormGroup'
@@ -94,7 +93,7 @@ const Signup = (props) =>{
   return (
     <div className="col-md-12">
       <div className="card card-container">
-        
+
         <Form onSubmit={handleSignup} ref={form}>
           <FormGroup>
           <label className="sr-only" htmlFor="username">Username</label>

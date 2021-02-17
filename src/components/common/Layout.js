@@ -30,6 +30,7 @@ const Layout = (props) => {
       <Link to="/" className="navbar-brand">
         <img
           src={icon}
+          alt="Monica Logo"
           className='rounded-circle'
           width='35px'
           height='35px'

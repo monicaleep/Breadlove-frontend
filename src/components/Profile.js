@@ -7,17 +7,16 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 const Profile = ({history}) =>{
 
-  const currentUser = getCurrentUser() // from the header info
+  const [currentUser] = useState(getCurrentUser()) // from the header info
   const [data,setData] = useState({})
 
   useEffect(()=>{
     if(currentUser){
       getProfile().then(response=>{
-        console.log(response.data)
         setData(response.data)
       })
     }
-  },[])
+  },[currentUser])
 
   const deleteUser = () => {
     deleteProfile().then(data=>{
@@ -28,7 +27,6 @@ const Profile = ({history}) =>{
   }
 
   const display = () => {
-    console.log(data)
     return !currentUser ?
        <NotLoggedIn/>
      :  (
