@@ -12,7 +12,6 @@ import NewBread from './components/NewBread'
 import Layout from './components/common/Layout'
 
 // CSS imports
-import "bootstrap/dist/css/bootstrap.min.css"
 import "./css/App.css";
 
 // Icon library
