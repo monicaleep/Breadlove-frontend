@@ -7,8 +7,8 @@ const Header = () => {
   const display = () => {
     return !getCurrentUser() ?
       <div className='card text-center mt-5' >
-        <h1 className='card-title'>Welcome to </h1>
-        <h3 className='card-title'>Find Your Best Friend's New Best Friend</h3>
+        <h1 className='card-title'>Bread the Love</h1>
+        <h3 className='card-title'>Login or Signup to share your baked goods!</h3>
         <div className='row justify-content-between'>
         <Link to={'/login'}  className="col-md-4 btn fetch-btn">Log In</Link>
         <Link to={'/signup'} className="col-md-4 btn fetch-btn">Sign Up</Link>
@@ -16,7 +16,7 @@ const Header = () => {
       </div>
     : (
       <div className='card text-center'>
-      <h1 className='card-title'>Welcome Back!</h1>
+      <h1 className='card-title'>Welcome Back! Let's browse.</h1>
       <Link to={'/profile'}  className="btn fetch-btn mx-auto">Go to Your Profile</Link>
     </div>
   )
