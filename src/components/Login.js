@@ -1,105 +1,81 @@
-import React, {useState, useRef} from 'react';
-import Form from 'react-validation/build/form'
-import Input from 'react-validation/build/input'
-import CheckButton from 'react-validation/build/button'
-// Common componenets
-import FormGroup from './common/FormGroup'
-import BtnSpinner from './common/BtnSpinner'
-// helper
-import { login } from '../services/auth.service'
+import {useState} from 'react';
+// helpers
+import {login} from '../services/auth.service'
 import {resMessage} from '../utils/functions.utils'
+// Formik/yup
+import {useFormik} from 'formik';
+import * as yup from 'yup';
+//material ui
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 
-const required = (value) => {
-  if(!value){
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    )
-  }
-}
-const Login = (props) => {
-  const form = useRef()
-  const checkBtn = useRef()
+const validationSchema = yup.object({
+  email: yup
+  .string('Enter your email')
+  .email('Enter a valid email')
+  .required('Email is required'),
+  password: yup.
+  string('Enter your password')
+  .min(6, 'Password should be of minimum 6 characters length')
+  .required('Password is required')
+});
 
-  const [data, setData] = useState({email:"",password:""})
+
+const Login = () => {
+
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
-
-  const handleLogin = (e) => {
-    e.preventDefault()
-    setMessage("")
-    setLoading(true)
-    // use the library to validate all fields on the form
-    form.current.validateAll()
-    // validator stores errrors and we can check if error exists
-    if(checkBtn.current.context._errors.length === 0){
-      login(data.email, data.password).then((res)=>{
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      setMessage("")
+      login(values.email, values.password).then((res) => {
         setLoading(false)
         console.log(res.data)
-      },
-      (error)=>{
-
-
-          setLoading(false)
-          setMessage(resMessage(error))
-        }
-      )
-    } else {
-      setLoading(false)
+      }, (error) => {
+        setLoading(false)
+        setMessage(resMessage(error))
+      })
     }
-  }
-
-  const handleChange = (e) => {
-    setData({...data,[e.target.name]:e.target.value})
-  }
+  });
 
 
-  return (
-  <div className="col-md-12">
-    <div className="card card-container">
-      
-      <Form onSubmit={handleLogin} ref={form} className="mt-5">
-        <FormGroup >
-        <label className="sr-only" htmlFor="email">Email</label>
-          <Input
-            placeholder="Email"
-            type="text"
-            className="text-input form-control "
-            name="email"
-            value={data.email}
-            onChange={handleChange}
-            validations={[required]}
-          />
-        </FormGroup>
-        <FormGroup>
-        <label className="sr-only" htmlFor="password">Password</label>
-          <Input
-            placeholder="Password"
-            type="password"
-            className="form-control text-input"
-            name="password"
-            value={data.password}
-            onChange={handleChange}
-            validations={[required]}
-          />
-        </FormGroup>
+  return (<div>
+    <form onSubmit={formik.handleSubmit}>
+      <TextField
+        id="email"
+        name="email"
+        label="Email"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        error={formik.touched.email && Boolean(formik.errors.email)}
+        helperText={formik.touched.email && formik.errors.email}/>
+      <TextField
+        id="password"
+        name="password"
+        label="Password"
+        type="password"
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}/>
+      <Button color="primary" variant="contained" type="submit" disabled={loading}>
+        Submit
+      </Button>
+      {
+        message && (<div >
 
-        <BtnSpinner loading={loading} text="Login"/>
+          {message}
 
-       {message && (
-           <div className='form-group'>
-               <div className='alert alert-danger' role='alert'>
-                   {message}
-               </div>
-           </div>
-       )}
-       <CheckButton style={{display:'none'}} ref={checkBtn} />
-      </Form>
-    </div>
-  </div>
-  )
+        </div>)
+      }
+    </form>
+  </div>)
 }
 
 export default Login;

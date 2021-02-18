@@ -5,7 +5,7 @@ import CheckButton from 'react-validation/build/button'
 import validator from 'validator';
 // Common components we made
 import FormGroup from './common/FormGroup'
-import BtnSpinner from './common/BtnSpinner'
+
 // helpers
 import {resMessage} from '../utils/functions.utils'
 import { register, login } from '../services/auth.service'
@@ -76,7 +76,6 @@ const Signup = (props) =>{
         })
       },
       (error)=>{
-
           setSuccessful(false)
           setMessage(resMessage(error))
         }
@@ -93,7 +92,6 @@ const Signup = (props) =>{
   return (
     <div className="col-md-12">
       <div className="card card-container">
-
         <Form onSubmit={handleSignup} ref={form}>
           <FormGroup>
           <label className="sr-only" htmlFor="username">Username</label>
@@ -136,7 +134,7 @@ const Signup = (props) =>{
 
 
 
-          <BtnSpinner loading={successful} text="Sign Up"/>
+          <button loading={successful} text="Sign Up"/>
 
          {message && (
              <div className='form-group'>

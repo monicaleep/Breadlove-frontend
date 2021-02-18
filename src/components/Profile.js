@@ -3,7 +3,6 @@ import {getCurrentUser, logout} from '../services/auth.service'
 import {getProfile, deleteProfile} from '../services/user.service'
 import {Link} from 'react-router-dom'
 import NotLoggedIn from './common/NotLoggedIn'
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 const Profile = ({history}) =>{
 
@@ -63,7 +62,6 @@ const Profile = ({history}) =>{
               <div className="col-12">
                 <h4 className="orange-bold">
                   Add a baked good to share!
-                <FontAwesomeIcon className="ml-3 orange-bold" icon={['fas', 'plus']} size="1x"/>
               </h4>
 
 
