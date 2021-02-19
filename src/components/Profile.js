@@ -58,9 +58,9 @@ const Profile = ({history}) =>{
           </div>:<></>}
           <div className="container">
             <Link to="/bread/new" className="">
-            <div className="row align-items-center justify-content-start">
-              <div className="col-12">
-                <h4 className="orange-bold">
+            <div>
+              <div >
+                <h4 >
                   Add a baked good to share!
               </h4>
 

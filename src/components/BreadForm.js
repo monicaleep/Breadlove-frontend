@@ -59,7 +59,7 @@ const textLengthTemp = (value) => {
 }
 
 
-const DogForm = (props) => {
+const BreadForm = (props) => {
   const form = useRef()
   const checkBtn = useRef()
 
@@ -170,8 +170,7 @@ const handleImageValue = (imageUrl) => {
       <div className="col-md-12">
         <div className="card">
           <Form onSubmit={handleSubmit} ref={form}>
-
-            <FormGroup text="Dog's Name">
+            <FormGroup text="Title">
               <Input
                 type="text"
                 className="form-control"
@@ -193,19 +192,19 @@ const handleImageValue = (imageUrl) => {
               <Input
                 type="text"
                 className="form-control d-none"
-                name="picture_url"
-                value={data.picture_url}
+                name="imageurl"
+                value={data.imageurl}
                 onChange={handleImageValue}
                 validations={[required,vurl]}
               />
             </FormGroup>
 
-            <FormGroup text="Short Bio">
+            <FormGroup text="description">
               <Input
                 type="text"
                 className="form-control"
-                name="biography"
-                value={data.biography}
+                name="description"
+                value={data.description}
                 onChange={handleChange}
                 validations={[required,textLengthBio]}
               />
@@ -222,98 +221,14 @@ const handleImageValue = (imageUrl) => {
               />
             </FormGroup>
 
-            <FormGroup text="Breed">
-              <Input
-                type="text"
-                className="form-control"
-                name="breed"
-                value={data.breed}
-                onChange={handleChange}
-                validations={[required,textLengthTemp]}
-              />
-            </FormGroup>
-
-            <FormGroup text="Age">
-              <Input
-                type="number"
-                className="form-control"
-                name="age"
-                min={0}
-                value={data.age}
-                onChange={handleChange}
-                validations={[required]}
-              />
-            </FormGroup>
 
 
-            <FormGroup text='Size'>
-              <Select
-                name='size'
-                className="form-control"
-                value={data.size}
-                onChange={handleChange}
-                validations={[required]}>
-                <option value='1'>Small</option>
-                <option value='2'>Medium</option>
-                <option value='3'>Large</option>
-              </Select>
-            </FormGroup>
 
-            {/* Preferences */}
-            <h3>Preferences</h3>
-            <div className="form-row">
-              <div className="form-group col-md-3">
-                <label htmlFor="min_age">Min Age</label>
-                <Input
-                  type="number"
-                  className="form-control"
-                  name="min_age"
-                  min={0}
-                  value={data.min_age}
-                  onChange={handleChange}
-                  validations={[required]}
-                />
-              </div>
-              <div className="form-group col-md-3">
-                <label htmlFor="inputState">Max Age</label>
-                <Input
-                  type="number"
-                  className="form-control"
-                  name="max_age"
-                  min={0}
-                  value={data.max_age}
-                  onChange={handleChange}
-                  validations={[required]}
-                />
-              </div>
 
-              <div className="form-group col-md-3">
-                <label htmlFor="inputState">Min Size</label>
-                <Select
-                  className="form-control"
-                  name="min_size"
-                  value={data.min_size}
-                  onChange={handleChange}
-                  validations={[required]}>
-                  <option value='1'>Small</option>
-                  <option value='2'>Medium</option>
-                  <option value='3'>Large</option>
-                </Select>
-              </div>
 
-              <div className="form-group col-md-3">
-                <label htmlFor="inputState">Max Size</label>
-                <Select
-                  className="form-control"
-                  name="max_size"
-                  value={data.max_size}
-                  onChange={handleChange}
-                  validations={[required]}>
-                  <option value='1'>Small</option>
-                  <option value='2'>Medium</option>
-                  <option value='3'>Large</option>
-                </Select>
-              </div>
+
+
+            </Form>
             </div>
 
 
@@ -337,4 +252,4 @@ const handleImageValue = (imageUrl) => {
   return display()
 }
 
-export default DogForm;
+export default BreadForm;

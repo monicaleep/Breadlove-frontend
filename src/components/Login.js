@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { useHistory} from 'react-router-dom'
 // helpers
 import {login} from '../services/auth.service'
 import {resMessage} from '../utils/functions.utils'
@@ -15,8 +16,8 @@ const validationSchema = yup.object({
   .string('Enter your email')
   .email('Enter a valid email')
   .required('Email is required'),
-  password: yup.
-  string('Enter your password')
+  password: yup
+  .string('Enter your password')
   .min(6, 'Password should be of minimum 6 characters length')
   .required('Password is required')
 });
@@ -37,6 +38,7 @@ const Login = () => {
       login(values.email, values.password).then((res) => {
         setLoading(false)
         console.log(res.data)
+        // TODO add useHistory? to redirect user?
       }, (error) => {
         setLoading(false)
         setMessage(resMessage(error))

@@ -9,7 +9,7 @@ const Home = () => {
     getAllBread().then(res=>{
       setBreadData(res.data)
     })
-  })
+  },[])
   const display = () => {
 
 }

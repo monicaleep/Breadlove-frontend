@@ -4,7 +4,6 @@ import authHeader from '../utils/authHeader.utils'
 const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:8000/' : process.env.REACT_APP_PRO_URL;
 
 export const getAllBread = () => {
-  console.log('hello?')
   return axios.get(API_URL, {headers: authHeader()})
 }
 
