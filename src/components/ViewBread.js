@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {getOneBread } from '../services/bread.service.js'
+import {getOneBread, newComment } from '../services/bread.service.js'
 import BreadBox from './BreadBox'
+import ListOfComments from './ListOfComments'
 import {
   Button,
   Dialog,
@@ -34,7 +35,6 @@ const ViewBread = ({match}) => {
 
   const handleChange = (e) => {
     setComment({...comment,[e.target.name]: e.target.value})
-    console.log(comment)
   }
 
   const handleClickOpen = () =>{
@@ -43,6 +43,11 @@ const ViewBread = ({match}) => {
 
   const handleAddComment = () => {
     setOpen(false)
+    newComment(id,comment).then(res=>{
+      console.log(res.data)
+      setComments([...comments, res.data])
+      setComment({author:"",body:""})
+    }).catch(err=>console.log(err))
   }
 
   return (
@@ -96,7 +101,7 @@ const ViewBread = ({match}) => {
     </div>
     }
     {comments &&
-      <div>list of comments</div>}
+      <div><ListOfComments comments={comments}/></div>}
     </div>
   );
 }

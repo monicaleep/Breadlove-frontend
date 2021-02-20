@@ -25,9 +25,9 @@ export const updateBread = (id, data) => {
 }
 
 export const deleteComment = (breadid, commentid) => {
-  return axios.delete(API_URL+`bread/${breadid}/comments/${commentid}`,{headers:authHeader()})
+  return axios.delete(API_URL+`bread/${breadid}/comment/${commentid}`,{headers:authHeader()})
 }
 
 export const newComment = (breadid, commentData) => {
-  return axios.post(API_URL+`bread/${breadid}/comments`,{...commentData},{headers:authHeader()})
+  return axios.post(API_URL+`bread/${breadid}/comment`,{...commentData},{headers:authHeader()})
 }
