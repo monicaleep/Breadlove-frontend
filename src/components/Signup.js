@@ -11,6 +11,19 @@ import { resMessage } from "../utils/functions.utils";
 import { register, login } from "../services/auth.service";
 import { useHistory } from "react-router-dom";
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  flex: {
+    display: "flex",
+    flexWrap: 'wrap',
+    width: '200px',
+    margin: '0 auto'
+  },
+});
+
+
+
 const validationSchema = yup.object({
   email: yup
     .string("Enter your email")
@@ -27,6 +40,7 @@ const validationSchema = yup.object({
 });
 
 const Signup = (props) => {
+  const classes = useStyles()
   const history = useHistory();
 
   const [successful, setSuccessful] = useState(false);
@@ -62,12 +76,13 @@ const Signup = (props) => {
   });
 
   return (
-    <div>
+    <div className={classes.flex}>
       <form onSubmit={formik.handleSubmit}>
         <TextField
           id="name"
           name="name"
           label="Name"
+          margin="normal"
           value={formik.values.name}
           onChange={formik.handleChange}
           error={formik.touched.name && Boolean(formik.errors.name)}
@@ -77,6 +92,7 @@ const Signup = (props) => {
           id="email"
           name="email"
           label="Email"
+          margin="normal"
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
@@ -87,6 +103,7 @@ const Signup = (props) => {
           name="password"
           label="Password"
           type="password"
+          margin="normal"
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}

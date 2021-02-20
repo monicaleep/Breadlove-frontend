@@ -1,12 +1,30 @@
 import React, { useState } from "react";
-import Form from "react-validation/build/form";
 import { Button, Typography } from "@material-ui/core";
-
+import {makeStyles} from '@material-ui/core/styles'
 // CSS
 import "../css/components/ImageUpload.css";
 import axios from "axios";
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  block: {
+    display: "block",
+  },
+  imagePreview:{
+    display: "block",
+    height: '300px'
+  }
+}));
+
+
+
 const ImageUpload = ({ handleUploadedImage }) => {
+  const classes = useStyles()
   const [selectedImage, setSelectedImage] = useState("");
   // *** State for image uploader ***
   const [previewSelection, setPreviewSelection] = useState("");
@@ -52,10 +70,10 @@ const ImageUpload = ({ handleUploadedImage }) => {
   };
 
   return (
-    <>
-      <Typography> Step 1: Upload a picture of your creation! </Typography>
-      <Form>
-        <Button variant="contained" component="label" disabled={loading}>
+    <div className={classes.root}>
+      <Typography variant={'h4'} className={classes.block}> Step 1: Upload a picture of your creation! </Typography>
+      <form className={classes.root}>
+        <Button  variant="contained" component="label" disabled={loading}>
           Select File
           <input
             type="file"
@@ -69,11 +87,13 @@ const ImageUpload = ({ handleUploadedImage }) => {
           <img
             src={previewSelection}
             alt="preview"
-            className="img-fluid rounded mx-0"
+
+            className={classes.imagePreview}
           />
         )}
         {previewSelection && (
           <Button
+            className={classes.block}
             variant="contained"
             type="button"
             onClick={handleSubmitImage}
@@ -82,8 +102,8 @@ const ImageUpload = ({ handleUploadedImage }) => {
             Upload Image
           </Button>
         )}
-      </Form>
-    </>
+      </form>
+    </div>
   );
 };
 

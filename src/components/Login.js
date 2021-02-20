@@ -67,6 +67,7 @@ const Login = () => {
           id="email"
           name="email"
           label="Email"
+          margin='normal'
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
@@ -76,6 +77,7 @@ const Login = () => {
           id="password"
           name="password"
           label="Password"
+          margin='normal'
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}

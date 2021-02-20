@@ -7,21 +7,32 @@ import { resMessage } from "../utils/functions.utils";
 // custom components
 import ImageUpload from "./ImageUpload";
 import NotLoggedIn from "./common/NotLoggedIn";
+
+//MUI
+import {Typography, Button, TextField} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
+
 // Formik/yup
 import { useFormik } from "formik";
 import * as yup from "yup";
-//MUI
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-
 const validationSchema = yup.object({
   name: yup.string("Enter a name").required("Name is required"),
   description: yup
     .string("Enter a description")
-    .required("Password is required"),
+    .required("Description is required"),
 });
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+}));
+
 const NewBread = () => {
+  const classes=useStyles()
   const [steptwo, setSteptwo] = useState(false);
   const [imageurl, setImageurl] = useState();
 
@@ -64,22 +75,25 @@ const NewBread = () => {
     <>
       <ImageUpload handleUploadedImage={handleUploadedImage} />
       {steptwo && (
-        <form onSubmit={formik.handleSubmit}>
+        <form className={classes.root} onSubmit={formik.handleSubmit}>
+        <Typography variant='h4'> Step 2: Fill in some info! </Typography>
           <TextField
             id="name"
             name="name"
-            label="name"
+            label="Name"
+            margin='normal'
             value={formik.values.name}
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name)}
-            helperText={formik.touched.name && formik.errors.name}
+            helperText={"What shall we call it?" && (formik.touched.name && formik.errors.name )}
           />
           <TextField
             id="description"
             name="description"
-            label="description"
+            label="Description"
             type="text"
             multiline="true"
+            margin='normal'
             value={formik.values.description}
             onChange={formik.handleChange}
             error={
