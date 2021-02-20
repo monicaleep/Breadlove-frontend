@@ -17,8 +17,7 @@ installation instructions
 - longer term I'd like to add real time messaging between users OR some ecommerce like Stripe
 
 // TODO
-edit a breadData
-delete a comment
+
 styling...
 update the readme
 seed some data
