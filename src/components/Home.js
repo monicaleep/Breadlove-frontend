@@ -2,8 +2,23 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import BreadBox from "./BreadBox";
 import { getAllBread } from "../services/bread.service";
+import { makeStyles } from '@material-ui/core/styles';
+import {Grid} from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(2)
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const Home = () => {
+  const classes = useStyles()
   const [breadData, setBreadData] = useState();
   useEffect(() => {
     getAllBread().then((res) => {
@@ -16,24 +31,26 @@ const Home = () => {
       breadData &&
       breadData.map((bread) => {
         return (
+          <Grid item xs={4} key={bread.id}>
           <BreadBox
             name={bread.name}
             imageurl={bread.imageurl}
-            key={bread.id}
+            className={classes.paper}
             description={bread.description}
             id={bread.id}
             commentCount={bread.commentCount}
           />
+          </Grid>
         );
       })
     );
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <Header />
-      {display()}
-    </>
+      <Grid container spacing={3}>{display()}</Grid>
+    </div>
   );
 };
 

@@ -9,6 +9,16 @@ import * as yup from "yup";
 //material ui
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  flex: {
+    display: "flex",
+    flexWrap: 'wrap',
+    width: '200px',
+    margin: '0 auto'
+  },
+});
 
 const validationSchema = yup.object({
   email: yup
@@ -22,6 +32,7 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
+  const classes = useStyles()
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -50,7 +61,7 @@ const Login = () => {
   });
 
   return (
-    <div>
+    <div className={classes.flex}>
       <form onSubmit={formik.handleSubmit}>
         <TextField
           id="email"

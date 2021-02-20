@@ -33,7 +33,10 @@ const Layout = ({ children }) => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Bread the Love</Typography>
+        <Link to={'/'} component={RouterLink} className={classes.navlink}>
+        <Typography variant="h6">Bread the Love</Typography>
+        </Link>
+
           {currentUser ? (
             <>
               <Button color="inherit">

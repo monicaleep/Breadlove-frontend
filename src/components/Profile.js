@@ -3,7 +3,7 @@ import { getCurrentUser, logout } from "../services/auth.service";
 import { getProfile, deleteProfile } from "../services/user.service";
 import { deleteBread } from "../services/bread.service";
 import { Link as RouterLink } from "react-router-dom";
-import { Link } from "@material-ui/core";
+import { Link , Container, Button, Typography } from "@material-ui/core";
 import NotLoggedIn from "./common/NotLoggedIn";
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -58,22 +58,22 @@ const Profile = ({ history }) => {
       <NotLoggedIn />
     ) : (
       <div className="container">
-        <h3 className="text-center">
-          <strong>{data.name}</strong>
-        </h3>
-        <header className="jumbotron">
+        <Container>
+          <Typography variant="h3">
+            <strong>Hello, {data.name}</strong>
+          </Typography>
           <p>
             <span className="orange-bold">Email Address:</span>
             {data.email}
           </p>
           <hr />
           <form onSubmit={deleteUser}>
-            <button className="btn delete-btn">Delete Account</button>
+            <Button>Delete Account</Button>
           </form>
-        </header>
+        </Container>
         <h2 className="orange-bold">Your Baked Goods:</h2>
         {bread ? (
-          <div className="container">
+          <Container maxWidth="sm">
             {bread.map((bg) => {
               return (
                 <div key={bg.id}>
@@ -100,7 +100,7 @@ const Profile = ({ history }) => {
                 </div>
               );
             })}
-          </div>
+          </Container>
         ) : (
           <></>
         )}
