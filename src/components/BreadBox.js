@@ -35,14 +35,14 @@ const BreadBox = ({imageurl, name, commentCount, description ,id}) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Link component={RouterLink} to={`/breads/${id}`} >
+      {commentCount && <CardActions>
+        <Link component={RouterLink} to={`/bread/${id}`} >
         <Button size="small" color="primary">
           {`${commentCount} Comment${commentCount>1 || commentCount==='0'?'s':''}`}
         </Button>
         </Link>
 
-      </CardActions>
+      </CardActions>}
     </Card>
   );
 }

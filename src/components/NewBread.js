@@ -78,6 +78,7 @@ const NewBread = () => {
         name="description"
         label="description"
         type="text"
+        multiline="true"
         value={formik.values.description}
         onChange={formik.handleChange}
         error={formik.touched.description && Boolean(formik.errors.description)}
