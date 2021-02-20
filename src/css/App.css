@@ -7,10 +7,10 @@ label {
   margin-top: 10px;
 }
 
-hr{
+hr {
   width: 400px;
   border-top: 1px solid rgba(#ebaa93, 0.8);
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-top: 40px;
 }
 
@@ -44,77 +44,77 @@ hr{
 #preview-image {
   height: 300px;
 }
-.text-input{
-  background-color: #ECECEC;
+.text-input {
+  background-color: #ececec;
   outline: none;
-  border-radius: .1rem
+  border-radius: 0.1rem;
 }
-.text-input::placeholder{
-  color: #EAA992;
+.text-input::placeholder {
+  color: #eaa992;
 }
 
-.text-input:focus{
-  background-color: #ECECEC;
+.text-input:focus {
+  background-color: #ececec;
   outline: none;
-  border-color: #DDDDDD;
+  border-color: #dddddd;
   box-shadow: none;
 }
 
-.fetch-btn{
-    color: #EAA992;
-    background-color: #ECECEC;
-    border-radius: 0.1rem;
-    display: block;
-    margin: 10px auto;
-    width: 40%;
+.fetch-btn {
+  color: #eaa992;
+  background-color: #ececec;
+  border-radius: 0.1rem;
+  display: block;
+  margin: 10px auto;
+  width: 40%;
 }
-.fetch-btn:hover{
-  color: #F15A24
-}
-
-.delete-btn{
-    color: #eb8181;
-    background-color: rgba(168, 41, 41, 0.2);
-    border-radius: 0.1rem;
-    display: block;
-    margin: 10px auto;
-
-}
-.delete-btn:hover{
-  color: #f12424
+.fetch-btn:hover {
+  color: #f15a24;
 }
 
-.orange-bold{
-  color: #F15A24;
+.delete-btn {
+  color: #eb8181;
+  background-color: rgba(168, 41, 41, 0.2);
+  border-radius: 0.1rem;
+  display: block;
+  margin: 10px auto;
+}
+.delete-btn:hover {
+  color: #f12424;
+}
+
+.orange-bold {
+  color: #f15a24;
   font-weight: 600;
 }
-.wrapper{
+.wrapper {
   position: relative;
   width: 250px;
   margin: 0 auto;
 }
-.dog_profile_img{
+.dog_profile_img {
   width: 100%;
   border-radius: 20px;
 }
-.delete-icon{
+.delete-icon {
   position: absolute;
   padding: 0 5px;
-  background:  rgba(0,0,0,0.5);
-  border: solid rgba(0,0,0,0.5) 2px;
+  background: rgba(0, 0, 0, 0.5);
+  border: solid rgba(0, 0, 0, 0.5) 2px;
   border-radius: 30%;
   top: 10px;
   right: 10px;
 }
-.edit-icon{
+.edit-icon {
   position: absolute;
   padding: 0 5px;
-  background:  rgba(0,0,0,0.5);
-  border: solid rgba(0,0,0,0.5) 2px;
+  background: rgba(0, 0, 0, 0.5);
+  border: solid rgba(0, 0, 0, 0.5) 2px;
   border-radius: 30%;
   top: 10px;
   left: 10px;
 }
-.delete-icon:hover, .edit-icon:hover{
-  cursor: pointer
+.delete-icon:hover,
+.edit-icon:hover {
+  cursor: pointer;
 }
