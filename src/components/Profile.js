@@ -12,6 +12,11 @@ const useStyles = makeStyles({
   icon: {
     cursor: "pointer",
   },
+  breaditem: {
+    display: 'flex',
+    alignItens: 'center',
+    justifyContent: 'space-evenly'
+  }
 });
 
 const Profile = ({ history }) => {
@@ -57,35 +62,36 @@ const Profile = ({ history }) => {
     return !currentUser ? (
       <NotLoggedIn />
     ) : (
-      <div className="container">
+      <Container>
         <Container>
           <Typography variant="h3">
-            <strong>Hello, {data.name}</strong>
+            Hello, {data.name}
           </Typography>
           <p>
-            <span className="orange-bold">Email Address:</span>
+            <span className="orange-bold">Email Address: </span>
             {data.email}
           </p>
           <hr />
           <form onSubmit={deleteUser}>
             <Button>Delete Account</Button>
           </form>
+          <Link to="/bread/new" className="" component={RouterLink}>
+                <Button>Add a baked good to share!</Button>
+          </Link>
         </Container>
-        <h2 className="orange-bold">Your Baked Goods:</h2>
         {bread ? (
           <Container maxWidth="sm">
+            <Typography variant={'h4'} className="orange-bold">Your Baked Goods:</Typography>
             {bread.map((bg) => {
               return (
-                <div key={bg.id}>
+                <Container className={classes.breaditem} key={bg.id}>
                   <Link
                     component={RouterLink}
                     to={{ pathname: `/bread/${bg.id}` }}
                   >
-                    <div className="row align-items-center justify-content-start">
-                      <div className="col-3">
+
                         <h3 className="orange-bold">{bg.name}</h3>
-                      </div>
-                    </div>
+
                   </Link>
                   <DeleteIcon
                     className={classes.icon}
@@ -97,23 +103,17 @@ const Profile = ({ history }) => {
                   >
                     <CreateIcon />
                   </Link>
-                </div>
+                </Container>
               );
             })}
           </Container>
         ) : (
           <></>
         )}
-        <div className="container">
-          <Link to="/bread/new" className="" component={RouterLink}>
-            <div>
-              <div>
-                <h4>Add a baked good to share!</h4>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
+
+
+
+      </Container>
     );
   };
 
