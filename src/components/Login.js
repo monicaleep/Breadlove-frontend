@@ -7,8 +7,7 @@ import { resMessage } from "../utils/functions.utils";
 import { useFormik } from "formik";
 import * as yup from "yup";
 //material ui
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import {Typography,TextField, Button} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
     display: "flex",
     flexWrap: 'wrap',
     width: '200px',
-    margin: '0 auto'
+    margin: '20px auto'
   },
 });
 
@@ -62,6 +61,7 @@ const Login = () => {
 
   return (
     <div className={classes.flex}>
+    <Typography variant={'h4'}> Login </Typography>
       <form onSubmit={formik.handleSubmit}>
         <TextField
           id="email"

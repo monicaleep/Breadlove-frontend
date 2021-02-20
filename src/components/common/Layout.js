@@ -10,6 +10,10 @@ const useStyles = makeStyles({
       textDecoration: "none",
     },
   },
+  navbar: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
 });
 const Layout = ({ children }) => {
   const classes = useStyles();
@@ -31,12 +35,12 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="static" >
+        <Toolbar className={classes.navbar}>
         <Link to={'/'} component={RouterLink} className={classes.navlink}>
         <Typography variant="h6">Bread the Love</Typography>
         </Link>
-
+        <div >
           {currentUser ? (
             <>
               <Button color="inherit">
@@ -74,6 +78,7 @@ const Layout = ({ children }) => {
               </Button>
             </>
           )}
+          </div>
         </Toolbar>
       </AppBar>
       {children}

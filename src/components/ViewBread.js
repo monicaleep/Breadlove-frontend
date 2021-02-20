@@ -28,14 +28,15 @@ const ViewBread = ({ match }) => {
   const id = match.params.id;
 
   useEffect(() => {
-    if (user) {
+    if (user && !comments) {
       getOneBread(id).then((res) => {
         setComments(res.data.comments);
         setBread(res.data);
         setLoading(false);
+        console.log('useeffect')
       });
     }
-  }, [id, user]);
+  }, [user, comments, id]);
 
   const handleChange = (e) => {
     setComment({ ...comment, [e.target.name]: e.target.value });

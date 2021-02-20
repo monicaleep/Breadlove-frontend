@@ -20,8 +20,8 @@ const Header = () => {
       </div>
     ) : (
       <div className="card text-center">
-        <h1 className="card-title">Welcome Back! Let's browse.</h1>
-        <Link to={"/profile"} className="btn fetch-btn mx-auto">
+        <h1 className="card-title">Welcome Back! Let's get that bread.</h1>
+        <Link to={"/profile"} className="fetch-btn mx-auto">
           Go to Your Profile
         </Link>
       </div>

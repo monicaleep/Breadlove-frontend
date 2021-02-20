@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
   breaditem: {
     display: 'flex',
-    alignItens: 'center',
+    alignItems: 'center',
     justifyContent: 'space-evenly'
   }
 });
@@ -81,7 +81,7 @@ const Profile = ({ history }) => {
             </Button>
           </form>
           <Link to="/bread/new" className="" component={RouterLink}>
-                <Button>Add a baked good to share!</Button>
+                <Button variant="contained">Add a baked good to share!</Button>
           </Link>
         </Container>
         {bread ? (
@@ -98,16 +98,17 @@ const Profile = ({ history }) => {
                         <h3 className="orange-bold">{bg.name}</h3>
 
                   </Link>
-                  <DeleteIcon
-                    className={classes.icon}
-                    onClick={() => handleDelete(bg.id)}
-                  />
                   <Link
                     component={RouterLink}
                     to={{ pathname: `/bread/${bg.id}/edit` }}
                   >
                     <CreateIcon />
                   </Link>
+                  <DeleteIcon
+                    className={classes.icon}
+                    onClick={() => handleDelete(bg.id)}
+                  />
+
                 </Container>
               );
             })}

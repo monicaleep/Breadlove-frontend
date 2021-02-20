@@ -15,13 +15,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ListOfComments = ({ comments }) => {
   const classes = useStyles();
+
   return (
     <List>
       {comments.map((comment) => {
         return (
           <ListItem alignItems="flex-start" key={comment.id}>
             <ListItemText
-              primary={comment.author}
+              primary={'Author: '+ comment.author}
               secondary={
                 <React.Fragment>
                   <Typography
@@ -30,9 +31,9 @@ const ListOfComments = ({ comments }) => {
                     className={classes.inline}
                     color="textPrimary"
                   >
-                    {comment.createdAt}
+                    {comment.body}
                   </Typography>
-                  {comment.body}
+                  {comment.createdAt}
                 </React.Fragment>
               }
             />
