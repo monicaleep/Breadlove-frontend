@@ -1,22 +1,29 @@
 import React from 'react';
 import {Card, CardActionArea, CardMedia, Typography, CardContent, CardActions, Button} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import {Link as RouterLink} from 'react-router-dom'
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+
   },
   media: {
     height: 140,
+
   },
+  action: {
+    cursor: 'default'
+  }
 });
 const BreadBox = ({imageurl, name, commentCount, description}) => {
   const classes = useStyles()
   return (
     <Card className={classes.root} variant="outlined">
-      <CardActionArea>
+      <CardActionArea className={classes.action}>
         <CardMedia
           className={classes.media}
-          image="imageurl"
+          image={imageurl}
           title={name}
         />
         <CardContent>
@@ -30,7 +37,7 @@ const BreadBox = ({imageurl, name, commentCount, description}) => {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Comment
+          {`${commentCount} Comment${commentCount>1 || commentCount==='0'?'s':''}`}
         </Button>
 
       </CardActions>

@@ -1,11 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, useHistory} from 'react-router-dom'
 import {getCurrentUser, logout} from '../../services/auth.service'
-import icon from '../../css/images/logo.png'
 import {AppBar, Toolbar, IconButton, MenuIcon, Typography, Button, Link} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles({
+  navlink: {
+    color: 'white',
+    '&:hover':{
+      textDecoration: 'none'
+    }
+  },
 
+});
 const Layout = ({children}) => {
-
+  const classes = useStyles()
+  const history = useHistory()
   const [currentUser, setCurrentUser] = useState(undefined)
 
   useEffect(()=>{
@@ -14,13 +23,13 @@ const Layout = ({children}) => {
     if (user){
       // set current user to the currentUser state
       setCurrentUser(user)
-
     }
 
   },[])
 
   const logOut = () => {
     logout()
+    window.location.reload()
   }
 
   return (
@@ -33,7 +42,10 @@ const Layout = ({children}) => {
         {currentUser?
           (<>
             <Button color="inherit">
-            <Link to={"/profile"} component={RouterLink}>
+            <Link
+            to={"/profile"}
+            component={RouterLink}
+            className={classes.navlink}>
                 Profile
             </Link>
           </Button>
@@ -44,12 +56,18 @@ const Layout = ({children}) => {
         ):
         <>
         <Button color="inherit">
-          <Link to={"/login"} component={RouterLink}>
+          <Link
+          to={"/login"}
+          component={RouterLink}
+          className={classes.navlink}>
             Login
           </Link>
         </Button>
         <Button color="inherit">
-          <Link to={"/signup"} component={RouterLink}>
+          <Link
+          to={"/signup"}
+          component={RouterLink}
+          className={classes.navlink}>
             Sign Up
           </Link>
         </Button>

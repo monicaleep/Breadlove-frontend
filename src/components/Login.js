@@ -18,13 +18,13 @@ const validationSchema = yup.object({
   .required('Email is required'),
   password: yup
   .string('Enter your password')
-  .min(6, 'Password should be of minimum 6 characters length')
+  .min(8, 'Password should be of minimum 8 characters length')
   .required('Password is required')
 });
 
 
 const Login = () => {
-
+  const history = useHistory()
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
   const formik = useFormik({
@@ -34,11 +34,12 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      setLoading(true)
       setMessage("")
       login(values.email, values.password).then((res) => {
         setLoading(false)
-        console.log(res.data)
-        // TODO add useHistory? to redirect user?
+        setMessage('You successfully logged in')
+        history.push('/')
       }, (error) => {
         setLoading(false)
         setMessage(resMessage(error))
@@ -47,7 +48,8 @@ const Login = () => {
   });
 
 
-  return (<div>
+  return (
+    <div>
     <form onSubmit={formik.handleSubmit}>
       <TextField
         id="email"

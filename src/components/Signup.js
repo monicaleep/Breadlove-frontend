@@ -1,152 +1,111 @@
-import React, {useState, useRef} from 'react';
-import Form from 'react-validation/build/form'
-import Input from 'react-validation/build/input'
-import CheckButton from 'react-validation/build/button'
-import validator from 'validator';
-// Common components we made
-import FormGroup from './common/FormGroup'
+import React, {useState} from 'react';
+// Formik/yup
+import {useFormik} from 'formik';
+import * as yup from 'yup';
+//material ui
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 // helpers
 import {resMessage} from '../utils/functions.utils'
 import { register, login } from '../services/auth.service'
+import { useHistory } from 'react-router-dom'
 
-
-const required = (value) => {
-  if(!value){
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    )
-  }
-}
-
-// validates username
-const vusername = (value) => {
-  if(value.length < 3 || value.length>= 20){
-    return (
-      <div className="alert alert-danger" role="alert">The username must be 3-20 characters</div>
-    )
-  }
-}
-
-// function that validates Password
-const vpassword = value => {
-  if(value.length<6 || value.length>=40){
-    return (
-      <div className="alert alert-danger" role="alert">The password must be 6-40 characters</div>
-    )
-  }
-}
-
-const email = (value) => {
-  if (!validator.isEmail(value)) {
-    return (<div className="alert alert-danger" role="alert">
-      `${value} is not a valid email.`
-    </div>
-      )
-  }
-};
+const validationSchema = yup.object({
+  email: yup
+  .string('Enter your email')
+  .email('Enter a valid email')
+  .required('Email is required'),
+  password: yup
+  .string('Enter your password')
+  .min(8, 'Password should be of minimum 8 characters length')
+  .required('Password is required'),
+  name: yup
+  .string('Enter your username')
+  .min(2, 'Name should be a minimum of 2 characters length')
+  .required('Username is required')
+});
 
 
 const Signup = (props) =>{
-  const form = useRef()
-  const checkBtn = useRef()
 
-  const [data,setData] = useState({name:"",password:"",email:""})
+  const history = useHistory()
+
   const [successful, setSuccessful] = useState(false)
   const [message, setMessage] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const handleSignup = (e) => {
-    e.preventDefault()
-    setMessage("")
-    setSuccessful(false)
-    // use the library to validate all fields on the form
-    form.current.validateAll()
-    // validator stores errrors and we can check if error exists
-    if(checkBtn.current.context._errors.length === 0){
-      // register the user
-      register(data.username, data.email, data.password, data.location).then((response)=>{
-        setMessage(response.data.message)
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      name: ''
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      setMessage("")
+      setLoading(true)
+      register(values.name, values.email, values.password).then((res) => {
+        setMessage(res.data.message)
         setSuccessful(true)
         // log them in after
-        login(data.username,data.password).then(()=>{
-          props.history.push("/")
+        login(values.email,values.password).then(()=>{
+          history.push("/")
           window.location.reload()
         })
-      },
-      (error)=>{
-          setSuccessful(false)
-          setMessage(resMessage(error))
-        }
-      )
-    } else {
-      setSuccessful(false)
+      }, (error) => {
+        setSuccessful(false)
+        setMessage(resMessage(error))
+      })
     }
-  }
+  });
 
-  const handleChange = (e) =>{
-    setData({...data,[e.target.name]:e.target.value})
-  }
+
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <Form onSubmit={handleSignup} ref={form}>
-          <FormGroup>
-          <label className="sr-only" htmlFor="username">Username</label>
-            <Input
-              type="text"
-              className="form-control text-input"
-              name="username"
-              placeholder="Username"
-              value={data.username}
-              onChange={handleChange}
-              validations={[required, vusername]}
-            />
-          </FormGroup>
+    <div>
+    <form onSubmit={formik.handleSubmit}>
+      <TextField
+        id="name"
+        name="name"
+        label="Name"
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        error={formik.touched.name && Boolean(formik.errors.name)}
+        helperText={formik.touched.name && formik.errors.name}/>
+      <TextField
+        id="email"
+        name="email"
+        label="Email"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        error={formik.touched.email && Boolean(formik.errors.email)}
+        helperText={formik.touched.email && formik.errors.email}/>
+      <TextField
+        id="password"
+        name="password"
+        label="Password"
+        type="password"
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}/>
+      <Button color="primary" variant="contained" type="submit" disabled={loading}>
+        Submit
+      </Button>
+      {
+        message && (
+              <div className={successful ? 'alert alert-success':'alert alert-danger'} role='alert'>
+                  {message}
+          </div>
+      )}
+    </form>
+  </div>
+)
 
-          <FormGroup >
-            <label className="sr-only" htmlFor="email">Email Address</label>
-            <Input
-              type="text"
-              placeholder="Email Address"
-              className="form-control text-input"
-              name="email"
-              value={data.email}
-              onChange={handleChange}
-              validations={[required, email]}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label className="sr-only" htmlFor="password">Password</label>
-            <Input
-              type="password"
-              placeholder="Password"
-              className="form-control text-input"
-              name="password"
-              value={data.password}
-              onChange={handleChange}
-              validations={[required, vpassword]}
-            />
-          </FormGroup>
+};
 
 
-
-          <button loading={successful} text="Sign Up"/>
-
-         {message && (
-             <div className='form-group'>
-                 <div className={successful ? 'alert alert-success':'alert alert-danger'} role='alert'>
-                     {message}
-                 </div>
-             </div>
-         )}
-         <CheckButton style={{display:'none'}} ref={checkBtn} />
-        </Form>
-      </div>
-    </div>
-)};
 
 export default Signup;

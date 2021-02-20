@@ -5,6 +5,11 @@ link to backend repo
 wireframes
 user stories
 explanation of frontend tech used
+-React, React-Router, Formik, Yup, axios, cloudinary, material-ui
 general approach (a couple paragraphs)
 installation instructions
+- NPM i
+- Set environment vairalbes
 unsolved problems / major hurdles
+- next step to add typescript to the project
+- longer term I'd like to add real time messaging between users

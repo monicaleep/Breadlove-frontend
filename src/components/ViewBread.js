@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommentForm = ({}) => {
+const ViewBread = ({}) => {
   return (
     <div></div>
   );
@@ -8,4 +8,4 @@ const CommentForm = ({}) => {
 
 
 
-export default CommentForm;
+export default ViewBread;

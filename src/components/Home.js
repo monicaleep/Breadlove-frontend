@@ -17,6 +17,7 @@ const Home = () => {
       name={bread.name}
       imageurl={bread.imageurl}
       key={bread.id}
+      description={bread.description}
       commentCount={bread.commentCount}/>
     }))
 }

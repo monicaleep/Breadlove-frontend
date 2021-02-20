@@ -16,13 +16,17 @@ export const deleteBread = (bgid) => {
   return axios.delete(API_URL+'bread/'+bgid,{headers:authHeader()})
 }
 
-
-
-export const updateDog = (dogid, dogData) => {
-  return axios.put(API_URL+'profile/dogs/'+dogid,{...dogData},{headers:authHeader()})
+export const createBread = (name, description, imageurl) => {
+  return axios.post(API_URL+'bread',{name, description, imageurl},{headers:authHeader()})
 }
 
+export const updateBread = (id, data) => {
+  return axios.put(API_URL+'bread/'+id,{...data},{headers:authHeader()})
+}
 
+export const deleteComment = (breadid, commentid) => {
+  return axios.delete(API_URL+`bread/${breadid}/comments/${commentid}`,{headers:authHeader()})
+}
 
 export const newComment = (breadid, commentData) => {
   return axios.post(API_URL+`bread/${breadid}/comments`,{...commentData},{headers:authHeader()})
