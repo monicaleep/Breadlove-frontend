@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardActionArea, CardMedia, Typography, CardContent, CardActions, Button} from '@material-ui/core'
+import {Card, CardActionArea, CardMedia, Typography, CardContent, CardActions, Button, Link} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import {Link as RouterLink} from 'react-router-dom'
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     cursor: 'default'
   }
 });
-const BreadBox = ({imageurl, name, commentCount, description}) => {
+const BreadBox = ({imageurl, name, commentCount, description ,id}) => {
   const classes = useStyles()
   return (
     <Card className={classes.root} variant="outlined">
@@ -36,9 +36,11 @@ const BreadBox = ({imageurl, name, commentCount, description}) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
+        <Link component={RouterLink} to={`/breads/${id}`} >
         <Button size="small" color="primary">
           {`${commentCount} Comment${commentCount>1 || commentCount==='0'?'s':''}`}
         </Button>
+        </Link>
 
       </CardActions>
     </Card>

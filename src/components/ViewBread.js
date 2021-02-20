@@ -2,7 +2,7 @@ import React from 'react';
 
 const ViewBread = ({}) => {
   return (
-    <div></div>
+    <div>Viewing d bread</div>
   );
 }
 

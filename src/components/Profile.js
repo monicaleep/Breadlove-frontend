@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {getCurrentUser, logout} from '../services/auth.service'
 import {getProfile, deleteProfile} from '../services/user.service'
-import {Link} from 'react-router-dom'
+import {Link as RouterLink} from 'react-router-dom'
+import {Link} from '@material-ui/core'
 import NotLoggedIn from './common/NotLoggedIn'
 
 const Profile = ({history}) =>{
@@ -54,7 +55,7 @@ const Profile = ({history}) =>{
             })}
           </div>:<></>}
           <div className="container">
-            <Link to="/bread/new" className="">
+            <Link to="/bread/new" className="" component={RouterLink}>
             <div>
               <div >
                 <h4 >
