@@ -48,7 +48,6 @@ const ImageUpload = ({handleUploadedImage}) => {
         const res = await axios.post(url, formData);
         setLoading(false)
         const imageUrl = res.data.secure_url;
-        console.log(imageUrl)
         handleUploadedImage(imageUrl)
       } catch (err) {
         console.error('ERROR HAPPENING', err);

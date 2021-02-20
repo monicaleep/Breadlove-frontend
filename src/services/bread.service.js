@@ -20,8 +20,9 @@ export const createBread = (name, description, imageurl) => {
   return axios.post(API_URL+'bread',{name, description, imageurl},{headers:authHeader()})
 }
 
-export const updateBread = (id, data) => {
-  return axios.put(API_URL+'bread/'+id,{...data},{headers:authHeader()})
+export const updateBread = (id, name, description, imageurl) => {
+  console.log(name, description, imageurl)
+  return axios.put(API_URL+'bread/'+id,{name, description, imageurl},{headers:authHeader()})
 }
 
 export const deleteComment = (breadid, commentid) => {

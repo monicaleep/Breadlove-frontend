@@ -8,7 +8,7 @@ import Profile from './components/Profile'
 import FourOFour from './components/FourOFour'
 import NewBread from './components/NewBread'
 import ViewBread from './components/ViewBread'
-
+import EditBread from './components/EditBread.js'
 // HOC which wraps around other Components
 import Layout from './components/common/Layout'
 
@@ -27,6 +27,7 @@ const App = () => {
         <Route exact path={'/profile'} component={Profile}/>
         <Route exact path={'/bread/new'} component={NewBread}/>
         <Route exact path={'/bread/:id'} component={ViewBread}/>
+        <Route exact path={'/bread/:id/edit'} component={EditBread}/>
         <Route path={'*'} component={FourOFour}/>
       </Switch>
     </Layout>

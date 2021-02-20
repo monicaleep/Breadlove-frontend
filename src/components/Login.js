@@ -40,6 +40,7 @@ const Login = () => {
         setLoading(false)
         setMessage('You successfully logged in')
         history.push('/')
+        window.location.reload()
       }, (error) => {
         setLoading(false)
         setMessage(resMessage(error))

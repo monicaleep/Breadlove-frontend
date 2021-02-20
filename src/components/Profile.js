@@ -1,25 +1,47 @@
 import React, {useState, useEffect} from 'react';
 import {getCurrentUser, logout} from '../services/auth.service'
 import {getProfile, deleteProfile} from '../services/user.service'
+import {deleteBread} from '../services/bread.service'
 import {Link as RouterLink} from 'react-router-dom'
 import {Link} from '@material-ui/core'
 import NotLoggedIn from './common/NotLoggedIn'
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
+const useStyles = makeStyles({
+  icon : {
+    cursor: 'pointer'
+  }
+})
 
 const Profile = ({history}) =>{
+  const classes= useStyles()
 
   const [currentUser] = useState(getCurrentUser()) // from the header info
   const [data,setData] = useState({})
+  const [bread, setBread] = useState()
 
   useEffect(()=>{
     if(currentUser){
       getProfile().then(response=>{
         setData(response.data)
-      })
+        if(response.data.bread){
+          setBread(response.data.bread)
+        }
+      }).catch(err=>console.log(err))
     }
   },[currentUser])
 
+  const handleDelete = (id) => {
+    deleteBread(id).then(res=>{
+      setBread(bread.filter(bg=>bg.id!==id))
+    }).catch(err=>console.log(err))
+  }
+
   const deleteUser = () => {
     deleteProfile().then(data=>{
+    }).catch(err=>{
+      console.log(err)
     })
     logout()
     history.push("/signup")
@@ -42,16 +64,20 @@ const Profile = ({history}) =>{
           </form>
           </header>
           <h2 className="orange-bold">Your Baked Goods:</h2>
-          {data.bread?<div className="container">
-            {data.bread.map(bg=>{
-              return (<Link  to={ { pathname:`/profile/bread/${bg._id}`,state:{bg:bg} } } key={bg.id} >
+          {bread?<div className="container">
+            {bread.map(bg=>{
+              return (<div key={bg.id}>
+                <Link component={RouterLink} to={ { pathname:`/bread/${bg.id}`} } >
                 <div className="row align-items-center justify-content-start">
                   <div className="col-3"><h3 className="orange-bold">{bg.name}</h3></div>
-                  <div className="col-5">
-                    <img  className="profile-img-card" src={bg.imageurl} alt={bg.name}/>
-                  </div>
+
               </div>
-              </Link>)
+              </Link>
+            <DeleteIcon className={classes.icon} onClick={()=>handleDelete(bg.id)}/>
+            <Link component={RouterLink} to={{pathname:`/bread/${bg.id}/edit`}}>
+            <CreateIcon/>
+            </Link>
+          </div>)
             })}
           </div>:<></>}
           <div className="container">

@@ -2,6 +2,7 @@ import React from 'react';
 import {List, ListItem, ListItemText, Typography} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -15,12 +16,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 const ListOfComments = ({comments}) => {
+
   const classes = useStyles();
   return (
     <List>
     {comments.map(comment=>{
       return (
-        <ListItem alignItems="flex-start">
+        <ListItem alignItems="flex-start" key={comment.id}>
 
        <ListItemText
          primary={comment.author}

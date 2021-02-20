@@ -26,7 +26,6 @@ const ViewBread = ({match}) => {
 
   useEffect(()=>{
     getOneBread(id).then(res=>{
-      console.log(res.data)
       setComments(res.data.comments)
       setBread(res.data)
       setLoading(false)
