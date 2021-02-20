@@ -31,7 +31,7 @@ const Home = () => {
       breadData &&
       breadData.map((bread) => {
         return (
-          <Grid item xs={4} key={bread.id}>
+          <Grid item xs={3} key={bread.id}>
           <BreadBox
             name={bread.name}
             imageurl={bread.imageurl}

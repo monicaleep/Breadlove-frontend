@@ -73,7 +73,12 @@ const Profile = ({ history }) => {
           </p>
           <hr />
           <form onSubmit={deleteUser}>
-            <Button>Delete Account</Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<DeleteIcon />}>
+              Delete Account
+            </Button>
           </form>
           <Link to="/bread/new" className="" component={RouterLink}>
                 <Button>Add a baked good to share!</Button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Backdrop, CircularProgress } from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles'
 // CSS
 import "../css/components/ImageUpload.css";
@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
   imagePreview:{
     display: "block",
     height: '300px'
-  }
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
 }));
 
 
@@ -101,7 +105,11 @@ const ImageUpload = ({ handleUploadedImage }) => {
           >
             Upload Image
           </Button>
+
         )}
+        {loading && (<Backdrop className={classes.backdrop} open={loading} >
+<CircularProgress color="inherit" />
+</Backdrop>)}
       </form>
     </div>
   );
